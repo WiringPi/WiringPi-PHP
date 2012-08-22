@@ -995,6 +995,7 @@ static swig_module_info swig_module = {swig_types, 0, 0, 0, 0, 0};
 ZEND_BEGIN_MODULE_GLOBALS(wiringpi)
 const char *error_msg;
 int error_code;
+char * pintype;
 ZEND_END_MODULE_GLOBALS(wiringpi)
 ZEND_DECLARE_MODULE_GLOBALS(wiringpi)
 #ifdef ZTS
@@ -1017,6 +1018,7 @@ static void SWIG_FAIL() {
 static void wiringpi_init_globals(zend_wiringpi_globals *globals ) {
   globals->error_msg = default_error_msg;
   globals->error_code = default_error_code;
+  globals->pintype = NULL;
 }
 static void wiringpi_destroy_globals(zend_wiringpi_globals * globals) { (void)globals; }
 
@@ -1712,6 +1714,17 @@ SWIGEXPORT zend_module_entry *get_module(void) { return &wiringpi_module_entry; 
 }
 #endif
 
+ZEND_DECLARE_MODULE_GLOBALS(wiringpi)
+
+
+#ifndef ZEND_ENGINE_2
+#define OnUpdateLong OnUpdateInt
+#endif
+PHP_INI_BEGIN()
+  STD_PHP_INI_ENTRY("wiringpi.pinmaptype", "user", PHP_INI_ALL, OnUpdateString, pintype, zend_wiringpi_globals, wiringpi_globals)
+PHP_INI_END()
+
+
 #define SWIG_php_minit PHP_MINIT_FUNCTION(wiringpi)
 /* -----------------------------------------------------------------------------
  * Type initialization:
@@ -1956,6 +1969,7 @@ SWIG_PropagateClientData(void) {
 
 /* oinit subsection */
 ZEND_INIT_MODULE_GLOBALS(wiringpi, wiringpi_init_globals, wiringpi_destroy_globals);
+REGISTER_INI_ENTRIES();
 CG(active_class_entry) = NULL;
 /* end oinit subsection */
 
@@ -1996,7 +2010,9 @@ PHP_MINFO_FUNCTION(wiringpi)
 {
     php_printf("A PHP extension for WiringPi\n");
     php_info_print_table_start();
-    php_info_print_table_row(2, "Version 0.1.0 (alpha)");
+    php_info_print_table_row(2, "Version", " 0.1.0 (alpha)");
     php_info_print_table_row(2, "Released", "2012-08-21");
+
+    DISPLAY_INI_ENTRIES();
 }
 /* end init section */
