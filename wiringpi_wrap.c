@@ -995,15 +995,17 @@ static swig_module_info swig_module = {swig_types, 0, 0, 0, 0, 0};
 ZEND_BEGIN_MODULE_GLOBALS(wiringpi)
 const char *error_msg;
 int error_code;
-char * pintype;
+char * pinmaptype;
 ZEND_END_MODULE_GLOBALS(wiringpi)
 ZEND_DECLARE_MODULE_GLOBALS(wiringpi)
 #ifdef ZTS
 #define SWIG_ErrorMsg() TSRMG(wiringpi_globals_id, zend_wiringpi_globals *, error_msg )
 #define SWIG_ErrorCode() TSRMG(wiringpi_globals_id, zend_wiringpi_globals *, error_code )
+#define SWIG_Pinmaptype() TSRMG(wiringpi_globals_id, zend_wiringpi_globals *, pinmaptype )
 #else
 #define SWIG_ErrorMsg() (wiringpi_globals.error_msg)
 #define SWIG_ErrorCode() (wiringpi_globals.error_code)
+#define SWIG_Pinmaptype() (wiringpi_globals.pinmaptype)
 #endif
 
 #ifdef __GNUC__
@@ -1018,7 +1020,7 @@ static void SWIG_FAIL() {
 static void wiringpi_init_globals(zend_wiringpi_globals *globals ) {
   globals->error_msg = default_error_msg;
   globals->error_code = default_error_code;
-  globals->pintype = NULL;
+  globals->pinmaptype = NULL;
 }
 static void wiringpi_destroy_globals(zend_wiringpi_globals * globals) { (void)globals; }
 
@@ -1721,7 +1723,7 @@ ZEND_DECLARE_MODULE_GLOBALS(wiringpi)
 #define OnUpdateLong OnUpdateInt
 #endif
 PHP_INI_BEGIN()
-  STD_PHP_INI_ENTRY("wiringpi.pinmaptype", "user", PHP_INI_ALL, OnUpdateString, pintype, zend_wiringpi_globals, wiringpi_globals)
+  STD_PHP_INI_ENTRY("wiringpi.pinmaptype", "USER", PHP_INI_ALL, OnUpdateString, pinmaptype, zend_wiringpi_globals, wiringpi_globals)
 PHP_INI_END()
 
 
@@ -1963,19 +1965,29 @@ SWIG_PropagateClientData(void) {
 }
 #endif
 
-
-  SWIG_php_minit {
+SWIG_php_minit {
     SWIG_InitializeModule(0);
 
-/* oinit subsection */
-ZEND_INIT_MODULE_GLOBALS(wiringpi, wiringpi_init_globals, wiringpi_destroy_globals);
-REGISTER_INI_ENTRIES();
-CG(active_class_entry) = NULL;
-/* end oinit subsection */
+    /* oinit subsection */
+    ZEND_INIT_MODULE_GLOBALS(wiringpi, wiringpi_init_globals, wiringpi_destroy_globals);
+    REGISTER_INI_ENTRIES();
+    CG(active_class_entry) = NULL;
+    /* end oinit subsection */
 
-/* cinit subsection */
-/* end cinit subsection */
-wiringPiSetupGpio();
+    /* cinit subsection */
+    /* end cinit subsection */
+
+    do {
+        int wiringCmp = strncmp(SWIG_Pinmaptype(), "PINS", 6);
+        int gpioCmp   = strncmp(SWIG_Pinmaptype(), "GPIO", 4);
+        if(wiringCmp == 0) {
+            wiringPiSetup();
+        } else if(gpioCmp == 0) {
+            wiringPiSetupGpio();
+        } else {
+            wiringPiSetupSys();
+        }
+    } while (0);
 
     return SUCCESS;
 }
@@ -2010,6 +2022,7 @@ PHP_MINFO_FUNCTION(wiringpi)
 {
     php_printf("A PHP extension for WiringPi\n");
     php_info_print_table_start();
+    php_info_print_table_row(2, "Mapping types", "PINS, GPIO, USER");
     php_info_print_table_row(2, "Version", " 0.1.0 (alpha)");
     php_info_print_table_row(2, "Released", "2012-08-21");
 
