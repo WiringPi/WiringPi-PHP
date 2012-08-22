@@ -6,7 +6,6 @@ extern int  wiringPiSetup     (void) ;
 extern int  wiringPiSetupSys  (void) ;
 extern int  wiringPiSetupGpio (void) ;
 
-extern void wiringPiGpioMode  (int mode) ;
 extern void pullUpDnControl   (int pin, int pud) ;
 extern void pinMode           (int pin, int mode) ;
 extern void digitalWrite      (int pin, int value) ;
