@@ -33,7 +33,6 @@ PHP_MINFO_FUNCTION(wiringpi);
 ZEND_NAMED_FUNCTION(_wrap_wiringPiSetup);
 ZEND_NAMED_FUNCTION(_wrap_wiringPiSetupSys);
 ZEND_NAMED_FUNCTION(_wrap_wiringPiSetupGpio);
-ZEND_NAMED_FUNCTION(_wrap_wiringPiGpioMode);
 ZEND_NAMED_FUNCTION(_wrap_pullUpDnControl);
 ZEND_NAMED_FUNCTION(_wrap_pinMode);
 ZEND_NAMED_FUNCTION(_wrap_digitalWrite);
