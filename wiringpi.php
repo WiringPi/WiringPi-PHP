@@ -39,10 +39,6 @@ abstract class wiringpi {
 		return wiringPiSetupGpio();
 	}
 
-	static function wiringPiGpioMode($mode) {
-		wiringPiGpioMode($mode);
-	}
-
 	static function pullUpDnControl($pin,$pud) {
 		pullUpDnControl($pin,$pud);
 	}
