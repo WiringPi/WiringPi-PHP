@@ -23,4 +23,4 @@ Alternatively you can:
 To choose the pin mapping type that you wish to use, create an ini file /etc/php5/conf.d/wiringpi.ini and adding the following:
 
     extension=wiringpi.so
-    witingpi.pinmaptype=[PINS|GPIO|USER]
+    wiringpi.pinmaptype=[PINS|GPIO|USER]
