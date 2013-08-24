@@ -3,6 +3,11 @@ WiringPi
 
 An implementation of most of the Arduino Wiring functions for the Raspberry Pi
 
+Git
+===
+
+You will need to clone this repository with the --recursive flag on git clone as it contains WiringPi as a submodule.
+
 Building
 ========
 
