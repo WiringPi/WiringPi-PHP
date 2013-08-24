@@ -36,6 +36,7 @@ ZEND_NAMED_FUNCTION(_wrap_wiringPiSetupGpio);
 ZEND_NAMED_FUNCTION(_wrap_pullUpDnControl);
 ZEND_NAMED_FUNCTION(_wrap_pinMode);
 ZEND_NAMED_FUNCTION(_wrap_digitalWrite);
+ZEND_NAMED_FUNCTION(_wrap_digitalWriteByte);
 ZEND_NAMED_FUNCTION(_wrap_pwmWrite);
 ZEND_NAMED_FUNCTION(_wrap_digitalRead);
 ZEND_NAMED_FUNCTION(_wrap_shiftOut);

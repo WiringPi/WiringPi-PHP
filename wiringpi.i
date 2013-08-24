@@ -9,6 +9,7 @@ extern int  wiringPiSetupGpio (void) ;
 extern void pullUpDnControl   (int pin, int pud) ;
 extern void pinMode           (int pin, int mode) ;
 extern void digitalWrite      (int pin, int value) ;
+extern void digitalWriteByte  (int value) ;
 extern void pwmWrite          (int pin, int value) ;
 extern int  digitalRead       (int pin) ;
 extern void shiftOut          (uint8_t dPin, uint8_t cPin, uint8_t order, uint8_t val);
