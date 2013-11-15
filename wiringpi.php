@@ -51,6 +51,10 @@ abstract class wiringpi {
 		digitalWrite($pin,$value);
 	}
 
+	static function digitalWriteByte($value) {
+		digitalWriteByte($value);
+	}
+
 	static function pwmWrite($pin,$value) {
 		pwmWrite($pin,$value);
 	}

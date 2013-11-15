@@ -1242,6 +1242,28 @@ fail:
 }
 
 
+ZEND_NAMED_FUNCTION(_wrap_digitalWriteByte) {
+  int arg1 ;
+  zval **args[1];
+
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+
+
+  /*@SWIG:/usr/share/swig2.0/php/utils.i,7,CONVERT_INT_IN@*/
+  convert_to_long_ex(args[0]);
+  arg1 = (int) Z_LVAL_PP(args[0]);
+  /*@SWIG@*/;
+
+  digitalWriteByte(arg1);
+
+  return;
+fail:
+  SWIG_FAIL();
+}
+
 ZEND_NAMED_FUNCTION(_wrap_pwmWrite) {
   int arg1 ;
   int arg2 ;
@@ -1670,6 +1692,7 @@ static zend_function_entry wiringpi_functions[] = {
  SWIG_ZEND_NAMED_FE(pullupdncontrol,_wrap_pullUpDnControl,NULL)
  SWIG_ZEND_NAMED_FE(pinmode,_wrap_pinMode,NULL)
  SWIG_ZEND_NAMED_FE(digitalwrite,_wrap_digitalWrite,NULL)
+ SWIG_ZEND_NAMED_FE(digitalwritebyte,_wrap_digitalWriteByte,NULL)
  SWIG_ZEND_NAMED_FE(pwmwrite,_wrap_pwmWrite,NULL)
  SWIG_ZEND_NAMED_FE(digitalread,_wrap_digitalRead,NULL)
  SWIG_ZEND_NAMED_FE(shiftout,_wrap_shiftOut,NULL)
