@@ -2000,7 +2000,7 @@ SWIG_php_minit {
     /* cinit subsection */
     /* end cinit subsection */
 
-    do {
+    /*do {
         int wiringCmp = strncmp(SWIG_Pinmaptype(), "PINS", 6);
         int gpioCmp   = strncmp(SWIG_Pinmaptype(), "GPIO", 4);
         if(wiringCmp == 0) {
@@ -2010,7 +2010,7 @@ SWIG_php_minit {
         } else {
             wiringPiSetupSys();
         }
-    } while (0);
+    } while (0);*/
 
     return SUCCESS;
 }
