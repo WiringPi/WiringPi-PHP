@@ -27,6 +27,10 @@ extern int   serialDataAvail (int fd) ;
 extern int   serialGetchar   (int fd) ;
 extern void  serialPrintf    (int fd, char *message, ...) ;
 
+extern void pwmSetMode          (int mode) ;
+extern void pwmSetRange         (unsigned int range) ;
+extern void pwmSetClock         (int divisor) ;
+
 %{
 #include "WiringPi/wiringPi/wiringPi.h"
 #include "WiringPi/wiringPi/wiringShift.h"

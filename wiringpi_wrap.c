@@ -1678,6 +1678,75 @@ fail:
   SWIG_FAIL();
 }
 
+ZEND_NAMED_FUNCTION(_wrap_pwmSetMode) {
+    int arg1 ;
+    zval **args[1];
+
+    SWIG_ResetError();
+    if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+      WRONG_PARAM_COUNT;
+    }
+
+
+    /*@SWIG:/usr/share/swig2.0/php/utils.i,7,CONVERT_INT_IN@*/
+    convert_to_long_ex(args[0]);
+    arg1 = (int) Z_LVAL_PP(args[0]);
+    /*@SWIG@*/;
+
+    pwmSetMode(arg1);
+
+    return;
+  fail:
+    SWIG_FAIL();
+  }
+}
+
+ZEND_NAMED_FUNCTION(_wrap_pwmSetRange) {
+    int arg1 ;
+    zval **args[1];
+
+    SWIG_ResetError();
+    if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+      WRONG_PARAM_COUNT;
+    }
+
+
+    /*@SWIG:/usr/share/swig2.0/php/utils.i,7,CONVERT_INT_IN@*/
+    convert_to_long_ex(args[0]);
+    arg1 = (unsigned int) Z_LVAL_PP(args[0]);
+    /*@SWIG@*/;
+
+    pwmSetRange(arg1);
+
+    return;
+  fail:
+    SWIG_FAIL();
+  }
+}
+
+ZEND_NAMED_FUNCTION(_wrap_pwmSetClock) {
+    int arg1 ;
+    zval **args[1];
+
+    SWIG_ResetError();
+    if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+      WRONG_PARAM_COUNT;
+    }
+
+
+    /*@SWIG:/usr/share/swig2.0/php/utils.i,7,CONVERT_INT_IN@*/
+    convert_to_long_ex(args[0]);
+    arg1 = (int) Z_LVAL_PP(args[0]);
+    /*@SWIG@*/;
+
+    pwmSetClock(arg1);
+
+    return;
+  fail:
+    SWIG_FAIL();
+  }
+}
+
 
 /* end wrapper section */
 /* class entry subsection */
@@ -1707,6 +1776,9 @@ static zend_function_entry wiringpi_functions[] = {
  SWIG_ZEND_NAMED_FE(serialdataavail,_wrap_serialDataAvail,NULL)
  SWIG_ZEND_NAMED_FE(serialgetchar,_wrap_serialGetchar,NULL)
  SWIG_ZEND_NAMED_FE(serialprintf,_wrap_serialPrintf,NULL)
+ SWIG_ZEND_NAMED_FE(pwmSetMode,_wrap_pwmSetMode,NULL)
+ SWIG_ZEND_NAMED_FE(pwmSetRange,_wrap_pwmSetRange,NULL)
+ SWIG_ZEND_NAMED_FE(pwmSetClock,_wrap_pwmSetClock,NULL)
  SWIG_ZEND_NAMED_FE(swig_wiringpi_alter_newobject,_wrap_swig_wiringpi_alter_newobject,NULL)
  SWIG_ZEND_NAMED_FE(swig_wiringpi_get_newobject,_wrap_swig_wiringpi_get_newobject,NULL)
 {NULL, NULL, NULL}
