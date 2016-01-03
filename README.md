@@ -25,7 +25,7 @@ Alternatively you can:
 
     sudo ./install.sh
 
-To choose the pin mapping type that you wish to use, create an ini file /etc/php5/conf.d/wiringpi.ini and adding the following:
+To choose the pin mapping type that you wish to use, create an ini file /etc/php5/mods-available/wiringpi.ini and adding the following:
 
     extension=wiringpi.so
     wiringpi.pinmaptype=[PINS|GPIO|USER]
