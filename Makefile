@@ -35,6 +35,7 @@ $(BUILD_DIR)/%.o: WiringPi/devLib/%.c
 
 install:
 	cp $(BUILD_DIR)/$(LIB).so `php-config --extension-dir`
+	cp wiringpi.php `php-config --extension-dir`
 
 clean:
 	rm -rf $(BUILD_DIR)
