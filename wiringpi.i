@@ -1,34 +1,45 @@
 %module wiringpi
 
-%apply unsigned char { uint8_t };
-
-extern int  wiringPiSetup     (void) ;
-extern int  wiringPiSetupSys  (void) ;
-extern int  wiringPiSetupGpio (void) ;
-
-extern void pullUpDnControl   (int pin, int pud) ;
-extern void pinMode           (int pin, int mode) ;
-extern void digitalWrite      (int pin, int value) ;
-extern void digitalWriteByte  (int value) ;
-extern void pwmWrite          (int pin, int value) ;
-extern int  digitalRead       (int pin) ;
-extern void shiftOut          (uint8_t dPin, uint8_t cPin, uint8_t order, uint8_t val);
-extern uint8_t shiftIn        (uint8_t dPin, uint8_t cPin, uint8_t order);
-
-extern void         delay             (unsigned int howLong) ;
-extern void         delayMicroseconds (unsigned int howLong) ;
-extern unsigned int millis            (void) ;
-
-extern int   serialOpen      (char *device, int baud) ;
-extern void  serialClose     (int fd) ;
-extern void  serialPutchar   (int fd, uint8_t c) ;
-extern void  serialPuts      (int fd, char *s) ;
-extern int   serialDataAvail (int fd) ;
-extern int   serialGetchar   (int fd) ;
-extern void  serialPrintf    (int fd, char *message, ...) ;
-
 %{
 #include "WiringPi/wiringPi/wiringPi.h"
-#include "WiringPi/wiringPi/wiringShift.h"
+#include "WiringPi/wiringPi/wiringPiI2C.h"
+#include "WiringPi/wiringPi/wiringPiSPI.h"
 #include "WiringPi/wiringPi/wiringSerial.h"
+#include "WiringPi/wiringPi/wiringShift.h"
+#include "WiringPi/wiringPi/drcSerial.h"
+#include "WiringPi/wiringPi/ads1115.h"
+#include "WiringPi/wiringPi/max31855.h"
+#include "WiringPi/wiringPi/max5322.h"
+#include "WiringPi/wiringPi/mcp23008.h"
+#include "WiringPi/wiringPi/mcp23016.h"
+#include "WiringPi/wiringPi/mcp23016reg.h"
+#include "WiringPi/wiringPi/mcp23017.h"
+#include "WiringPi/wiringPi/mcp23s08.h"
+#include "WiringPi/wiringPi/mcp23s17.h"
+#include "WiringPi/wiringPi/mcp23x0817.h"
+#include "WiringPi/wiringPi/mcp23x08.h"
+#include "WiringPi/wiringPi/mcp3002.h"
+#include "WiringPi/wiringPi/mcp3004.h"
+#include "WiringPi/wiringPi/mcp3422.h"
+#include "WiringPi/wiringPi/mcp4802.h"
+#include "WiringPi/wiringPi/pcf8574.h"
+#include "WiringPi/wiringPi/pcf8591.h"
+#include "WiringPi/wiringPi/sn3218.h"
+#include "WiringPi/wiringPi/softPwm.h"
+#include "WiringPi/wiringPi/softServo.h"
+#include "WiringPi/wiringPi/softTone.h"
+#include "WiringPi/wiringPi/sr595.h"
+#include "WiringPi/devLib/ds1302.h"
+#include "WiringPi/devLib/font.h"
+#include "WiringPi/devLib/gertboard.h"
+#include "WiringPi/devLib/lcd128x64.h"
+#include "WiringPi/devLib/lcd.h"
+#include "WiringPi/devLib/maxdetect.h"
+#include "WiringPi/devLib/piGlow.h"
+#include "WiringPi/devLib/piNes.h"
+#include "WiringPi/devLib/scrollPhat.h"
 %}
+
+%apply unsigned char { uint8_t };
+
+%include "bindings.i"
