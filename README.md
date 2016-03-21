@@ -35,7 +35,7 @@ This will additionally copy `wiringpi.php` which you can include with:
 include(ini_get('extension_dir') . '/wiringpi.php');
 ```
 
-To choose the pin mapping type that you wish to use, create an ini file /etc/php5/conf.d/wiringpi.ini and adding the following:
+To choose the pin mapping type that you wish to use, create an ini file /etc/php5/mods-available/wiringpi.ini and adding the following:
 
 ```
 extension=wiringpi.so
