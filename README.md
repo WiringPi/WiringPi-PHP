@@ -1,7 +1,7 @@
 WiringPi
 ========
 
-An implementation of most of the Arduino Wiring functions for the Raspberry Pi
+An implementation of most of the Arduino Wiring functions for the Raspberry Pi for PHP7
 
 Git
 ===
@@ -11,7 +11,10 @@ You will need to clone this repository with the --recursive flag on git clone as
 Building
 ========
 
-You will need to first install php-dev or php5-dev
+You will need to first install php-dev
+```
+sudo apt install php-dev
+```
 
 Then
 
@@ -21,7 +24,7 @@ make
 
 This will give you a build folder with the wiringpi.so module, this needs to go in the relevant folder of your PHP installation.
 
-Most likely somewhere in /usr/lib/php5/
+Most likely somewhere in /usr/lib/php/
 
 Alternatively you can:
 
